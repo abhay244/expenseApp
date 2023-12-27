@@ -22,5 +22,5 @@ app.get("/",(req,res)=>{
 
 //listen server
 app.listen(PORT,()=>{
-    console.log("server started")
+    console.log("server started running")
 })

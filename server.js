@@ -3,9 +3,14 @@ const cors=require("cors");
 const dotenv=require("dotenv");
 const morgar=require("morgan");
 const morgan = require("morgan");
+const connectDb = require("./config/connectDb");
 
 dotenv.config();
 const PORT=process.env.PORT;
+
+//database call
+connectDb();
+
 //express app
 const app=express();
 
@@ -16,9 +21,8 @@ app.use(cors());
 
 
 //routes
-app.get("/",(req,res)=>{
-    res.send("server started running");
-})
+app.use('/api/v1/users', require('./routes/userRoute'));
+app.use('/ap1/v1/transactions',require('./routes/transactionRoutes'));
 
 //listen server
 app.listen(PORT,()=>{

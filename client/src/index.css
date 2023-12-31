@@ -1,0 +1,19 @@
+*{
+  padding:0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.content{
+  height: 80vh;
+}
+
+
+.register-page{
+  height: 90vh;
+  /*other css properties can be written here instead usign bootstrap*/
+}
+
+.login-page{
+  height: 90vh;
+}

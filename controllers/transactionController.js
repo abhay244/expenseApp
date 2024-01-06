@@ -2,7 +2,7 @@ const transactionModel=require("../models/transactionModel");
 
 const addTransaction=async(req,res)=>{
 try {
-    const newTransaction=new transactionModel();
+    const newTransaction=new transactionModel(req.body);
     await newTransaction.save();
     res.status(201).json({
         success:true,
@@ -16,11 +16,11 @@ try {
 
 const getAllTransaction=async(req,res)=>{
     try {
-        const transactions=await transactionModel.find(req.body);
+        const transactions=await transactionModel.find({userId:req.body.userId});
         if(transactions){
             return res.status(200).json({
                 success:true,
-                transactions,
+                transactions:transactions,
             })
         }
         else{

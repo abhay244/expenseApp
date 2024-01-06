@@ -17,3 +17,12 @@
 .login-page{
   height: 90vh;
 }
+
+/*css for add transaction div*/
+.filters{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px;
+  box-shadow: 0 0 3px gray;
+}

@@ -14,6 +14,7 @@ const Register = () => {
             navigate('/login');
         }catch(error){
             message.error("Registeration failed, invalid username or password")
+            console.log(error);
         }
 }
 //prevent registration for already logged in user

@@ -1,5 +1,5 @@
 const transactionModel=require("../models/transactionModel");
-
+const moment=require("moment");
 const addTransaction=async(req,res)=>{
 try {
     const newTransaction=new transactionModel(req.body);
@@ -16,7 +16,21 @@ try {
 
 const getAllTransaction=async(req,res)=>{
     try {
-        const transactions=await transactionModel.find({userId:req.body.userId});
+        const {frequency,selectedDateRange}=req.body;
+        const transactions=await transactionModel.find({
+            userId:req.body.userId,
+            ...(frequency!=='custom'?{
+                date:{
+                    $gt:moment().subtract(Number(frequency),'d').toDate()
+                }
+            }:{
+                date:{
+                    $gte:selectedDateRange[0],
+                    $lte:selectedDateRange[1]
+                }
+            })
+            
+        });
         if(transactions){
             return res.status(200).json({
                 success:true,

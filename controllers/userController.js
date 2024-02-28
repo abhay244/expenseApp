@@ -20,9 +20,12 @@ const loginController=async (req,res)=>{
 };
 
 const registerUserController=async (req,res)=>{
-    console.log("hello");
     try{
-        console.log("hello");
+        const {email}=req.body;
+        const user=await userModel.findOne({email});
+        if(user){
+            console.log("User with this email is alredy registered ")
+        }
         const newUser=new userModel(req.body);
         await newUser.save();
         res.status(201).json({
@@ -34,6 +37,7 @@ const registerUserController=async (req,res)=>{
             success:false,
             error,
         })
+        console.log(error);
     }
 };
 
